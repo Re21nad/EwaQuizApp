@@ -1,15 +1,18 @@
-# ewa_quiz_bootcamp
+# QuizCode
+An Application for taking the test about programming languages.
+It's for challenging anyone to become the profisional Programmer who has a high score.
 
-A new Flutter project.
+## Programming Languages
 
-## Getting Started
+- Java
+- Python 
+- HTML/CSS
+- JavaScript
+- Flutter/Dart
 
-This project is a starting point for a Flutter application.
+and so no...
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,

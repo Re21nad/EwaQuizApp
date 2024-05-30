@@ -1,10 +1,11 @@
+import 'package:ewa_quiz_bootcamp/startScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 
-void main() {
-  runApp(const MyApp());
-}
+// void main() {
+//   runApp(const MyApp());
+// }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: const MyHomePage(title: 'Welcome to Flutter Bootcamp'),
+      home: const StartScreen(),
     );
   }
 }
