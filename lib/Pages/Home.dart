@@ -1,3 +1,4 @@
+import 'package:ewa_quiz_bootcamp/Exam/startExam.dart';
 import 'package:ewa_quiz_bootcamp/logIn.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -195,7 +196,10 @@ class _HomeState extends State<Home> {
                         Container(
                           child: ElevatedButton(
                             onPressed: () {
-                              // Add your onPressed logic here
+                              Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => StartExam()),
+                              );
                             },
                             style: ElevatedButton.styleFrom(
                               primary: Color.fromARGB(255, 106, 42, 190),
