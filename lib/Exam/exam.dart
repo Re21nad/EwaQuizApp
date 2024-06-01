@@ -17,6 +17,31 @@ class _ExamState extends State<Exam> {
   int currentInt = 0;
   int currentScore = 0;
   int currentPoint = 0;
+  List questions =[];
+  
+  @override
+void initState() {
+  super.initState();
+  // Initialize examQuestions based on the name of the exam
+  switch (widget.name) {
+    case 'Python':
+      questions = pythonTest;
+      break;
+    case 'Java':
+      questions = javaTest;
+      break;
+    case 'HTML':
+      questions = htmlTest;
+      break;
+    case 'CSS':
+      questions = cssTest;
+      break;
+    case 'Dart':
+      questions = dartTest;
+      break;
+  }
+}
+  
   
   @override
   Widget build(BuildContext context) {
@@ -70,7 +95,7 @@ class _ExamState extends State<Exam> {
               ),
 
               Text(
-                pythonTest[currentInt]['question'],
+                questions[currentInt]['question'],
                 style: GoogleFonts.inika(
                   fontSize: 17,
                   fontWeight: FontWeight.w500,
@@ -79,7 +104,7 @@ class _ExamState extends State<Exam> {
               ),
               SizedBox(height: 30),
 
-              for (int i = 0; i < pythonTest[currentInt]['answer'].length; i++)
+              for (int i = 0; i < questions[currentInt]['answer'].length; i++)
                 Container(
                   
                   width: 350,
@@ -88,9 +113,9 @@ class _ExamState extends State<Exam> {
                     
                     onPressed: () {
 
-                      currentScore = currentScore + (pythonTest[currentInt]['answer'][i]['score'] as int);
-                      currentPoint = currentPoint + (pythonTest[currentInt]['answer'][i]['point'] as int);
-                      if(currentInt == pythonTest.length - 1){
+                      currentScore = currentScore + (questions[currentInt]['answer'][i]['score'] as int);
+                      currentPoint = currentPoint + (questions[currentInt]['answer'][i]['point'] as int);
+                      if(currentInt == questions.length - 1){
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(builder: (context) => Score(currentScore: currentScore, currentPoint: currentPoint, numQuestion: 100, name: widget.name)),
@@ -119,9 +144,9 @@ class _ExamState extends State<Exam> {
                       mainAxisAlignment: MainAxisAlignment.start, // Align text to start
                       children: [
                         Text(
-                          pythonTest[currentInt]['answer'][i]['ans'],
+                          questions[currentInt]['answer'][i]['ans'],
                           style: GoogleFonts.inika(
-                            fontSize: 17,
+                            fontSize: 13,
                             fontWeight: FontWeight.w300,
                             color: Colors.white,
                           ),
