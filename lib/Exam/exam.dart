@@ -1,3 +1,4 @@
+import 'package:ewa_quiz_bootcamp/Exam/questions_and_answers.dart';
 import 'package:ewa_quiz_bootcamp/Exam/score.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,6 +11,11 @@ class Exam extends StatefulWidget {
 }
 
 class _ExamState extends State<Exam> {
+
+  int currentInt = 0;
+  int currentScore = 0;
+  int currentPoint = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,86 +61,75 @@ class _ExamState extends State<Exam> {
                 'What is the output of this code:',
                 textAlign: TextAlign.start,
                 style: GoogleFonts.inika(
-                  fontSize: 15,
+                  fontSize: 17,
                   fontWeight: FontWeight.w500,
                   color: Colors.yellow,
                 ),
               ),
 
               Text(
-                'def sum(a,b):\n  return a + b\n\nprint(sum(23,5))',
+                pythonTest[currentInt]['question'],
                 style: GoogleFonts.inika(
-                  fontSize: 15,
+                  fontSize: 17,
                   fontWeight: FontWeight.w500,
                   color: Colors.white,
                 ),
               ),
+              SizedBox(height: 30),
 
-              SizedBox(height: 30,),
+              for (int i = 0; i < pythonTest[currentInt]['answer'].length; i++)
+                Container(
+                  
+                  width: 350,
+                  margin: EdgeInsets.symmetric(vertical: 5),
+                  child: ElevatedButton(
+                    
+                    onPressed: () {
 
-              Container(
-                height: 350,
-                // color: Color.fromARGB(255, 43, 53, 144),
-                child: Column(children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20,vertical: 20),
-                    // decoration: BoxDecoration(
-                    //   borderRadius: BorderRadius.only(
-                    //     topLeft: Radius.circular(50),
-                    //     topRight: Radius.circular(50),
-                    //   ),
-                    // ),
-
-                    child: ElevatedButton(  
-                      onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Score()),
-                          );
-                        },
-                      style: ElevatedButton.styleFrom(
-                        primary: Color.fromARGB(255, 43, 53, 144),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          side: BorderSide(
-                            color: Color.fromARGB(255, 65, 79, 205), // Border color
-                            width: 3, // Border width
+                      currentScore = currentScore + (pythonTest[currentInt]['answer'][i]['score'] as int);
+                      currentPoint = currentPoint + (pythonTest[currentInt]['answer'][i]['point'] as int);
+                      if(currentInt == pythonTest.length - 1){
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => Score(currentScore: currentScore,currentPoint: currentPoint,numQuestion: 100,)),
+                        );
+                      }else{
+                        setState(() {
+                          currentInt++;
+                        });
+                      }
+                      // print('current score: $currentScore');
+                      // print('current point: $currentPoint');   
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Color.fromARGB(255, 27, 19, 113),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      side: BorderSide(
+                        color: Color.fromARGB(255, 44, 34, 156), // Border color
+                        width: 2, // Border width
+                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start, // Align text to start
+                      children: [
+                        Text(
+                          pythonTest[currentInt]['answer'][i]['ans'],
+                          style: GoogleFonts.inika(
+                            fontSize: 17,
+                            fontWeight: FontWeight.w300,
+                            color: Colors.white,
                           ),
                         ),
-                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'a.',
-                              style: GoogleFonts.inika(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w300,
-                              color: Colors.white,
-                              ),
-                            ),
-
-                            SizedBox(width: 10,),
-
-                            Text(
-                              '44',
-                              style: GoogleFonts.inika(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w300,
-                              color: Colors.white,
-                              ),
-                            ),
-                        ]
-                      ),
+                      ],
                     ),
                   ),
-                ]),
-              ),
-
-
-          ]),
-        ),
+                ),
+              ]
+            ),
+          ),
       ),
     );
   }
