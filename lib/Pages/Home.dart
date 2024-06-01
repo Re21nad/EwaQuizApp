@@ -12,9 +12,10 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
+   
   final List<Map<String, String>> categories = [
-    {"name": "Math", "image": "lib/images/programming-language.png"},
-    {"name": "Algorithms", "image": "lib/images/programming-language.png"},
+    {"name": "Dart", "image": "lib/images/programming-language.png"},
+    {"name": "CSS", "image": "lib/images/programming-language.png"},
     {"name": "Python", "image": "lib/images/programming-language.png"},
     {"name": "Java", "image": "lib/images/programming-language.png"},
     {"name": "HTML", "image": "lib/images/programming-language.png"},
@@ -196,10 +197,13 @@ class _HomeState extends State<Home> {
                         Container(
                           child: ElevatedButton(
                             onPressed: () {
+                              String categoryName = categories[index]['name'] as String;
                               Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => StartExam()),
+                                context,
+                                MaterialPageRoute(builder: (context) => StartExam(name: categoryName)),
                               );
+                              // print(categoryName); 
+                              // print(categoryName.runtimeType);                         
                             },
                             style: ElevatedButton.styleFrom(
                               primary: Color.fromARGB(255, 106, 42, 190),
@@ -219,6 +223,7 @@ class _HomeState extends State<Home> {
                             ),
                           ),
                         ),
+
                         SizedBox(height: 10), // Spacing between button and text
                         Text(
                           categories[index]['name']!,

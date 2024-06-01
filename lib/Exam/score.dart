@@ -8,12 +8,14 @@ class Score extends StatelessWidget {
   final int currentPoint;
   final int currentScore;
   final int numQuestion;
+  final String name;
 
   const Score({
     super.key,
     required this.currentScore,
     required this.currentPoint,
     required this.numQuestion,
+    required this.name,
   });
 
   @override
@@ -101,7 +103,7 @@ class Score extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => StartExam()),
+                    MaterialPageRoute(builder: (context) => StartExam(name: name,)),
                   );
                 },
                 style: ElevatedButton.styleFrom(

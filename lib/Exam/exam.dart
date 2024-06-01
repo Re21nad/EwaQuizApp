@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Exam extends StatefulWidget {
-  const Exam({super.key});
+  final String name;
+  const Exam({super.key, required this.name});
+  
 
   @override
   State<Exam> createState() => _ExamState();
@@ -15,7 +17,7 @@ class _ExamState extends State<Exam> {
   int currentInt = 0;
   int currentScore = 0;
   int currentPoint = 0;
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +26,7 @@ class _ExamState extends State<Exam> {
         centerTitle: true,
         elevation: 0.0,
         title: Text(
-          'Python Programming',
+          '${widget.name} Programming',
           textAlign: TextAlign.center,
           style: GoogleFonts.literata(
             fontSize: 25,
@@ -46,7 +48,7 @@ class _ExamState extends State<Exam> {
             children: [
             SizedBox(height: 20,),
             Text(
-                'Question',
+                'Question ${currentInt+1}',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.literata(
                   fontSize: 25,
@@ -91,8 +93,9 @@ class _ExamState extends State<Exam> {
                       if(currentInt == pythonTest.length - 1){
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => Score(currentScore: currentScore,currentPoint: currentPoint,numQuestion: 100,)),
+                          MaterialPageRoute(builder: (context) => Score(currentScore: currentScore, currentPoint: currentPoint, numQuestion: 100, name: widget.name)),
                         );
+
                       }else{
                         setState(() {
                           currentInt++;
